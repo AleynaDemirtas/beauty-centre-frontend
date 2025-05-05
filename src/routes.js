@@ -2,7 +2,9 @@ import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Takeappointment = React.lazy(() => import('./views/appointment/takeappointment/Takeappointment'))
+const Adminappointment = React.lazy(() => import('./views/admin/Adminappointment'))
 const Appointment = React.lazy(() => import('./views/appointment/myappointment/Appointment'))
+const Description = React.lazy(() => import('./views/description/Description'))
 const Confirmation = React.lazy(() => import('./views/confirm/Confirmation'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
@@ -60,6 +62,8 @@ const routes = [
   { path: '/theme/colors', name: 'Colors', element: Colors },
   { path: '/appointment/myappointment', name: 'Appointment', element: Appointment },
   { path: '/appointment/takeappointment', name: 'Takeappointment', element: Takeappointment },
+  { path: '/admin', name: 'Adminappointment', element: Adminappointment },
+  { path: '/description', name: 'Description', element: Description },
   { path: '/confirm', name: 'Confirmation', element: Confirmation },
   { path: '/theme/typography', name: 'Typography', element: Typography },
   { path: '/base', name: 'Base', element: Cards, exact: true },

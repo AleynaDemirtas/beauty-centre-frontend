@@ -12,8 +12,8 @@ const loading = (
 const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 
 // Pages
-const Login = React.lazy(() => import('./views/pages/login/Login'))
-const Register = React.lazy(() => import('./views/pages/register/Register'))
+const Login = React.lazy(() => import('./views/login/Login'))
+const Register = React.lazy(() => import('./views/register/Register'))
 
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 

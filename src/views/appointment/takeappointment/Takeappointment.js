@@ -76,11 +76,11 @@ const Takeappointment = () => {
   return (
     <CCard className="mb-4">
       <CCardHeader>
-        <strong>Make A Appointment</strong>
+        <strong>Randevu Oluştur</strong>
       </CCardHeader>
       <CCardBody>
         <p className="text-medium-emphasis small">
-          <b>Fill in the information below to make an appointment</b>
+          <b>Bilgileri Giriniz</b>
         </p>
 
         <CForm className="row g-3">

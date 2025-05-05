@@ -1,10 +1,16 @@
-import { cilCursor, cilMoodVeryGood, cilMoodGood, cilMoodBad, cilMoodVeryBad } from '@coreui/icons'
+import { cilMoodBad, cilMoodGood, cilMoodVeryBad, cilMoodVeryGood } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import {
+  CButton,
   CCard,
   CCardBody,
   CCardHeader,
   CCol,
+  CDropdown,
+  CDropdownDivider,
+  CDropdownItem,
+  CDropdownMenu,
+  CDropdownToggle,
   CTable,
   CTableBody,
   CTableDataCell,
@@ -15,11 +21,8 @@ import {
 import { format } from 'date-fns'
 import { useEffect, useState } from 'react'
 
-const Appointment = () => {
+const Adminappointment = () => {
   const [data, setData] = useState()
-  const [formDate, setFormDate] = useState()
-  const [formOperation, setFormOperation] = useState()
-  const [formStatus, setFormStatus] = useState()
 
   useEffect(() => {
     fetch('http://localhost:1337/api/appointments?populate=*')
@@ -67,7 +70,7 @@ const Appointment = () => {
             <span>Onaylandı</span>
           </div>
         )
-        case 'Rejected':
+      case 'Rejected':
         return (
           <div
             style={{
@@ -82,7 +85,7 @@ const Appointment = () => {
             <span>Reddedildi</span>
           </div>
         )
-        case 'Cancelled':
+      case 'Cancelled':
         return (
           <div
             style={{
@@ -102,20 +105,55 @@ const Appointment = () => {
     }
   }
 
+  const updateStatus = (row, status) => {
+    fetch(`http://localhost:1337/api/appointments/${row.id}`, {
+      // Adding method type
+      method: 'PUT',
+
+      // Adding body or contents to send
+      body: JSON.stringify({
+        data: {
+          status: status,
+        },
+      }),
+
+      // Adding headers to the request
+      headers: {
+        Accept: '*/*',
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      // Converting to JSON
+      .then((response) => {
+        if (response.status === 200) {
+          alert('İşlem Başarılı')
+          const find = data.find((element) => element.id === row.id)
+          if (find) {
+            find.attributes.status = status
+            setData([...data])
+          }
+        } else {
+          alert('İşlem Başarısız')
+        }
+        console.log(response)
+      })
+  }
+
   return (
     <CCol xs={12}>
       <CCard className="mb-4">
         <CCardHeader>
-          <strong>Randevularım</strong>
+          <strong>Admin</strong>
         </CCardHeader>
         <CCardBody>
-          <p className="text-medium-emphasis small">Randevularınızı Görebilirsiniz</p>
+          <p className="text-medium-emphasis small">Appointments</p>
 
           <CTable bordered>
             <CTableHead>
               <CTableRow>
                 <CTableHeaderCell scope="col">Date</CTableHeaderCell>
                 <CTableHeaderCell scope="col">Operation</CTableHeaderCell>
+                <CTableHeaderCell scope="col">Notes</CTableHeaderCell>
                 <CTableHeaderCell scope="col">Status</CTableHeaderCell>
               </CTableRow>
             </CTableHead>
@@ -129,8 +167,25 @@ const Appointment = () => {
                     <CTableDataCell key={'o' + index}>
                       {item?.attributes?.operation?.data?.attributes?.name}
                     </CTableDataCell>
-                    <CTableDataCell key={'s' + index}>
+                    <CTableDataCell key={'k' + index}>{item?.attributes?.note}</CTableDataCell>
+                    <CTableDataCell key={'c' + index}>
                       {formatStatus(item?.attributes?.status)}
+                    </CTableDataCell>
+                    <CTableDataCell
+                      key={'a' + index}
+                      style={{ display: 'flex', justifyContent: 'center' }}
+                    >
+                      <CDropdown variant="btn-group">
+                        <CDropdownToggle color="primary">Durum Değiştir</CDropdownToggle>
+                        <CDropdownMenu>
+                          <CDropdownItem onClick={() => updateStatus(item, 'Approved')}>
+                            Approved
+                          </CDropdownItem>
+                          <CDropdownItem onClick={() => updateStatus(item, 'Rejected')}>
+                            Rejected
+                          </CDropdownItem>
+                        </CDropdownMenu>
+                      </CDropdown>
                     </CTableDataCell>
                   </CTableRow>
                 ))}
@@ -142,4 +197,4 @@ const Appointment = () => {
   )
 }
 
-export default Appointment
+export default Adminappointment
