@@ -28,6 +28,20 @@ const _nav = [
   },
   {
     component: CNavTitle,
+    name: 'Appointment',
+  },
+  {
+    component: CNavItem,
+    name: 'Takeappointment',
+    to: '/appointment/takeappointment',
+  },
+  {
+    component: CNavItem,
+    name: 'Appointments',
+    to: '/appointment/myappointment',
+  },
+  {
+    component: CNavTitle,
     name: 'Theme',
   },
   {
@@ -281,11 +295,6 @@ const _nav = [
         component: CNavItem,
         name: 'Register',
         to: '/register',
-      },
-      {
-        component: CNavItem,
-        name: 'Error 404',
-        to: '/404',
       },
       {
         component: CNavItem,
