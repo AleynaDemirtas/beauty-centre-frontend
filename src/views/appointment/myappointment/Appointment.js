@@ -1,3 +1,4 @@
+import React from 'react'
 import { cilCursor, cilMoodVeryGood, cilMoodGood, cilMoodBad, cilMoodVeryBad } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import {
@@ -67,7 +68,7 @@ const Appointment = () => {
             <span>Onaylandı</span>
           </div>
         )
-        case 'Rejected':
+      case 'Rejected':
         return (
           <div
             style={{
@@ -82,7 +83,7 @@ const Appointment = () => {
             <span>Reddedildi</span>
           </div>
         )
-        case 'Cancelled':
+      case 'Cancelled':
         return (
           <div
             style={{

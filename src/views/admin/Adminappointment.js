@@ -1,3 +1,4 @@
+import React from 'react'
 import { cilMoodBad, cilMoodGood, cilMoodVeryBad, cilMoodVeryGood } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 import {

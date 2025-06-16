@@ -90,11 +90,8 @@ const AppHeaderDropdown = () => {
         </CDropdownItem>
       </CDropdownMenu>
   */}
-    </CDropdown> 
+    </CDropdown>
   )
 }
 
 export default AppHeaderDropdown
-
-
-

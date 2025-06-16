@@ -1,7 +1,9 @@
 import React from 'react'
 
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
-const Takeappointment = React.lazy(() => import('./views/appointment/takeappointment/Takeappointment'))
+const Takeappointment = React.lazy(() =>
+  import('./views/appointment/takeappointment/Takeappointment'),
+)
 const Adminappointment = React.lazy(() => import('./views/admin/Adminappointment'))
 const Appointment = React.lazy(() => import('./views/appointment/myappointment/Appointment'))
 const Description = React.lazy(() => import('./views/description/Description'))
